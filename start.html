@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Application</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./questions.js"></script>
+    <!-- <script src="./index.js"></script> -->
+    <script>
+        let count = 0;
+        let selectedAnswers = [];
+        let correctAnswers = [];
+        let que = questions;
+        console.log(que);
+        console.log(count);
+    </script>
+</head>
+
+<body onload="f()">
+    <h1>Your Quiz is going on...</h1>
+    <h3 id="question"></h3>
+    <div id="options">
+        <input type="radio" id="a" name="ans" value="a">
+        <label for="a"></label><br>
+        <input type="radio" id="b" name="ans" value="b">
+        <label for="b"></label><br>
+        <input type="radio" id="c" name="ans" value="c">
+        <label for="c"></label><br>
+        <input type="radio" id="d" name="ans" value="d">
+        <label for="d"></label>
+    </div>
+    <button onclick="goNext()">Next</button>
+    <script>
+        let options = document.getElementById("options").querySelectorAll("label");
+        let ans = document.getElementsByName("ans");
+        console.log(ans);
+        function f() {
+            document.getElementById("question").innerHTML = que[count].question;
+            for (let i = 0; i < options.length; i++) {
+                options[i].innerHTML = que[count].options[i];
+            }
+        }
+        function goNext() {
+            let flag = 0;
+            let selected = 0;
+            if (count < 10) {
+                for (let i = 0; i < ans.length; i++) {
+                    if (ans[i].checked) {
+                        selectedAnswers.push(ans[i].value);
+                        correctAnswers.push(ans[i].value === que[count].correct_answer);
+                        console.log(que[count]);
+                        console.log("correct = ", que[count].correct_answer);
+                        console.log("your answer = ", ans[i].value);
+                        flag = 1;
+                        selected = i;
+                        break;
+                    }
+                }
+                if (!flag) {
+                    alert("please select one option!");
+                }
+                else {
+                    ans[selected].checked = false;
+                    count++;
+                    console.log(selectedAnswers);
+                    console.log(correctAnswers);
+                    if(count < 10)
+                    f();
+                    else {
+                        let correctCount = 0;
+                        for(let item of correctAnswers) {
+                            correctCount += (item == true);
+                            console.log(correctCount);
+                        }
+                        localStorage.correctAnswers = correctCount;
+                        window.location.href = "result.html";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

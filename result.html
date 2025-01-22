@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+</head>
+
+<body onload="f()">
+    <h1>Your results</h1>
+    <h3 id="correct">Correct Answers : </h3>
+</body>
+<script>
+    function f() {
+        let correctCount = document.getElementById("correct")
+        correctCount.innerHTML += localStorage.correctAnswers;
+    }
+</script>
+
+</html>

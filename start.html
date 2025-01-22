@@ -22,7 +22,9 @@
     <h1>Your Quiz is going on...</h1>
     <div class="progress-container">
         <ul>
-            <li><div class="one"></div></li>
+            <li>
+                <div class="one"></div>
+            </li>
             <li></li>
             <li></li>
             <li></li>
@@ -45,18 +47,28 @@
             <div class="nine"></div>
         </div>
     </div>
-    <h3 id="question"></h3>
-    <div id="options">
-        <input type="radio" id="a" name="ans" value="a">
-        <label for="a"></label><br>
-        <input type="radio" id="b" name="ans" value="b">
-        <label for="b"></label><br>
-        <input type="radio" id="c" name="ans" value="c">
-        <label for="c"></label><br>
-        <input type="radio" id="d" name="ans" value="d">
-        <label for="d"></label>
+    <div id="que">
+        <h3 id="question"></h3>
     </div>
-    <button onclick="goNext()">Next</button>
+    <div id="options">
+        <div class="opt" onclick="tick(1)">
+            <input type="radio" id="a" name="ans" value="a">
+            <label for="a"></label><br>
+        </div>
+        <div class="opt" onclick="tick(2)">
+            <input type="radio" id="b" name="ans" value="b">
+            <label for="b"></label><br>
+        </div>
+        <div class="opt" onclick="tick(3)">
+            <input type="radio" id="c" name="ans" value="c">
+            <label for="c"></label><br>
+        </div>
+        <div class="opt" onclick="tick(4)">
+            <input type="radio" id="d" name="ans" value="d">
+            <label for="d"></label>
+        </div>
+    </div>
+    <button class="btn" onclick="goNext()">Next</button>
     <script>
         // progress bar container
         let bar = document.querySelector(".progress-container").querySelectorAll("li");
@@ -73,14 +85,22 @@
         let progressbar = document.querySelector(".progress-container .progress-bar").querySelectorAll("div");
         console.log(progressbar);
 
+        // options div
+        let ticked = document.getElementById("options").querySelectorAll("div");
+
         function f() {
             document.getElementById("question").innerHTML = que[count].question;
             for (let i = 0; i < options.length; i++) {
                 options[i].innerHTML = que[count].options[i];
             }
-            if (count < 10)
-            bar[count].style.background = "white";
+            if (count < 10) {
+                bar[count].style.background = "white";
+                bar[count].style.border = "1px solid #444";
+                bar[count].style.top = "-5px";
+            }
         }
+
+
         function goNext() {
             let flag = 0;
             let selected = 0;
@@ -106,21 +126,25 @@
                     ans[selected].checked = false;
                     if (check) {
                         progressbar[count].style.background = "#34eb4c";
-                        if(count < 9)
-                        bar[count].style.background = "#34eb4c";
+                        if (count < 9)
+                            bar[count].style.background = "#34eb4c";
                     }
                     else {
                         bar[count].style.background = "#eb3434";
-                        if(count < 9)
-                        progressbar[count].style.background = "#eb3434";
+                        if (count < 9)
+                            progressbar[count].style.background = "#eb3434";
                     }
-                    if(count < 9)
-                    progressbar[count].style.width += "11%";
+                    if (count < 9)
+                        progressbar[count].style.width += "11%";
                     count++;
                     console.log(selectedAnswers);
                     console.log(correctAnswers);
                     if (count < 10) {
                         f();
+                        for (let i = 0; i < ticked.length; i++) {
+                            ticked[i].style.background = "white";
+                            ticked[i].style.color = "black";
+                        }
                     }
                     else {
                         let correctCount = 0;
@@ -133,6 +157,17 @@
                     }
                 }
             }
+        }
+
+
+        function tick(num) {
+            for (let i = 0; i < ticked.length; i++) {
+                ticked[i].style.background = "white";
+                ticked[i].style.color = "black";
+            }
+            ticked[num - 1].style.background = "green";
+            ticked[num - 1].style.color = "white";
+            ans[num - 1].checked = true;
         }
     </script>
 </body>

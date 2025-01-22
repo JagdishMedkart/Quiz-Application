@@ -1,0 +1,301 @@
+.progress-container .progress-bar {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background: #444;
+    z-index: -1000;
+    top: 3px;
+}
+
+.progress-container .progress-bar .one {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.progress-container .progress-bar .two {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.progress-container .progress-bar .three {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.progress-container .progress-bar .four {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.progress-container .progress-bar .five {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.progress-container .progress-bar .six {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.progress-container .progress-bar .seven {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.progress-container .progress-bar .eight {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.progress-container .progress-bar .nine {
+    width: 0%;
+    height: 100%;
+    background-color: #444;
+    float: left;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+body {
+    margin: 0%;
+}
+
+h4 {
+    margin-top: 100px;
+    font-size: 36px;
+    font-weight: 300;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    color: #CCC;
+}
+
+.progress-container {
+    z-index: -1;
+    margin: 10px;
+    width: 80%;
+    height: 10px;
+    background: #444;
+    position: relative;
+    left: 10%;
+    right: 10%;
+    box-shadow: inset 0 0 5px #666;
+}
+
+.progress-container ul li {
+    background: gray;
+    height: 16px;
+    display: inline-table;
+    width: 16px;
+    border-radius: 50%;
+    position: absolute;
+    margin: 0;
+    left: 0;
+    padding: 0;
+    top: -3px;
+}
+
+.progress-container ul li:nth-child(2) {
+    margin-left: 11%;
+}
+
+.progress-container ul li:nth-child(3) {
+    margin-left: 22%;
+}
+
+.progress-container ul li:nth-child(4) {
+    margin-left: 33%;
+}
+
+.progress-container ul li:nth-child(5) {
+    margin-left: 44%;
+}
+
+.progress-container ul li:nth-child(6) {
+    margin-left: 55%;
+}
+
+.progress-container ul li:nth-child(7) {
+    margin-left: 66%;
+}
+
+.progress-container ul li:nth-child(8) {
+    margin-left: 77%;
+}
+
+.progress-container ul li:nth-child(9) {
+    margin-left: 88%;
+}
+
+.progress-container ul li:last-child {
+    margin-left: 99%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.progress-container1 {
+    z-index: -99;
+    position: relative;
+    margin: 50px auto 50px;
+    padding: 4px 0 0;
+    width: 600px;
+    height: 6px;
+    background: #444;
+    -moz-box-shadow: inset 0 0 2px #666;
+    -webkit-box-shadow: inset 0 0 2px #666;
+    box-shadow: inset 0 0 2px #666;
+}
+
+.progress-container1 ul li {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    display: inline-table;
+    height: 10px;
+    width: 10px;
+    background: #14BFCC;
+    border-radius: 50%;
+}
+
+.progress-container1 ul li:nth-child(2) {
+    margin-left: 190px;
+}
+
+.progress-container1 ul li:nth-child(3) {
+    margin-left: 400px;
+}
+
+.progress-container1 ul li:last-child {
+    margin-left: 600px;
+}
+
+.progress-container1 ul li:before {
+    z-index: -99;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    content: '';
+    height: 20px;
+    width: 20px;
+    background: #444;
+    border-radius: 50%;
+}
+
+.progress-container1 .progress-bar {
+    height: 2px;
+    width: 100%;
+    background: #09A6B2;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.button1 {
+    margin: 20px auto;
+    padding: 10px;
+    width: 150px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #FFF;
+    background: #14BFCC;
+    text-align: center;
+    border: 1px solid #09A6B2;
+    cursor: pointer;
+}
+
+#reset1 {
+    background: #FF4C4C;
+    border-color: #9E2626;
+}

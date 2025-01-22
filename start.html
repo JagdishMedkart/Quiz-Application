@@ -20,6 +20,31 @@
 
 <body onload="f()">
     <h1>Your Quiz is going on...</h1>
+    <div class="progress-container">
+        <ul>
+            <li><div class="one"></div></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="progress-bar">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+            <div class="four"></div>
+            <div class="five"></div>
+            <div class="six"></div>
+            <div class="seven"></div>
+            <div class="eight"></div>
+            <div class="nine"></div>
+        </div>
+    </div>
     <h3 id="question"></h3>
     <div id="options">
         <input type="radio" id="a" name="ans" value="a">
@@ -33,23 +58,39 @@
     </div>
     <button onclick="goNext()">Next</button>
     <script>
+        // progress bar container
+        let bar = document.querySelector(".progress-container").querySelectorAll("li");
+        console.log(bar);
+
+        // option labels
         let options = document.getElementById("options").querySelectorAll("label");
+
+        // radio inputs
         let ans = document.getElementsByName("ans");
         console.log(ans);
+
+        // progress bar
+        let progressbar = document.querySelector(".progress-container .progress-bar").querySelectorAll("div");
+        console.log(progressbar);
+
         function f() {
             document.getElementById("question").innerHTML = que[count].question;
             for (let i = 0; i < options.length; i++) {
                 options[i].innerHTML = que[count].options[i];
             }
+            if (count < 10)
+            bar[count].style.background = "white";
         }
         function goNext() {
             let flag = 0;
             let selected = 0;
+            let check = false;
             if (count < 10) {
                 for (let i = 0; i < ans.length; i++) {
                     if (ans[i].checked) {
                         selectedAnswers.push(ans[i].value);
-                        correctAnswers.push(ans[i].value === que[count].correct_answer);
+                        check = ans[i].value === que[count].correct_answer;
+                        correctAnswers.push(check);
                         console.log(que[count]);
                         console.log("correct = ", que[count].correct_answer);
                         console.log("your answer = ", ans[i].value);
@@ -63,14 +104,27 @@
                 }
                 else {
                     ans[selected].checked = false;
+                    if (check) {
+                        progressbar[count].style.background = "#34eb4c";
+                        if(count < 9)
+                        bar[count].style.background = "#34eb4c";
+                    }
+                    else {
+                        bar[count].style.background = "#eb3434";
+                        if(count < 9)
+                        progressbar[count].style.background = "#eb3434";
+                    }
+                    if(count < 9)
+                    progressbar[count].style.width += "11%";
                     count++;
                     console.log(selectedAnswers);
                     console.log(correctAnswers);
-                    if(count < 10)
-                    f();
+                    if (count < 10) {
+                        f();
+                    }
                     else {
                         let correctCount = 0;
-                        for(let item of correctAnswers) {
+                        for (let item of correctAnswers) {
                             correctCount += (item == true);
                             console.log(correctCount);
                         }

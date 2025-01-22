@@ -47,6 +47,7 @@
             <div class="nine"></div>
         </div>
     </div>
+    <h3 id="timer"></h3>
     <div id="que">
         <h3 id="question"></h3>
     </div>
@@ -89,6 +90,13 @@
         let ticked = document.getElementById("options").querySelectorAll("div");
 
         function f() {
+            let timer = 30;
+            setInterval(() => {
+                if(timer > 0) {
+                    timer--;
+                    document.getElementById("timer").innerText = `${timer} second left...`;
+                }
+            }, 1000);
             localStorage.removeItem("correctCount");
             document.getElementById("question").innerHTML = que[count].question;
             for (let i = 0; i < options.length; i++) {

@@ -309,3 +309,9 @@ h4 {
     radial-gradient(closest-side, white 79%, transparent 80% 100%),
     conic-gradient(green 75%, white);   
 }
+
+#timer {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 0;
+}

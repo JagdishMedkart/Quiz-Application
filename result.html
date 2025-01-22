@@ -12,12 +12,19 @@
     <div id="result">
         <h1>Your results</h1>
         <h3 id="correct">Correct Answers : </h3>
+        <div class="result-bar">
+            <progress min="0" max="10" style="visibility:hidden;height:0;width:0;"></progress>
+        </div>
     </div>
 </body>
 <script>
     function f() {
         let correctCount = document.getElementById("correct")
         correctCount.innerHTML += localStorage.correctAnswers;
+        let progress = document.querySelector("progress");
+        progress.value = localStorage.correctAnswers;
+        let val = document.querySelector(".result-bar");
+        // val.style.setProperty("--before-content", "5");
     }
 </script>
 

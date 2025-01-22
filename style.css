@@ -299,3 +299,13 @@ h4 {
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(18, 9, 121, 1) 53%, rgba(62, 16, 62, 1) 100%);
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
+
+.result-bar {
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: 
+    radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(green 75%, white);   
+}

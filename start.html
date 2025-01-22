@@ -89,6 +89,7 @@
         let ticked = document.getElementById("options").querySelectorAll("div");
 
         function f() {
+            localStorage.removeItem("correctCount");
             document.getElementById("question").innerHTML = que[count].question;
             for (let i = 0; i < options.length; i++) {
                 options[i].innerHTML = que[count].options[i];

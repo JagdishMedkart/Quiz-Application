@@ -13,91 +13,146 @@
         let selectedAnswers = [];
         let correctAnswers = [];
         let que = questions;
-        console.log(que);
-        console.log(count);
+        // console.log(que);
+        // console.log(count);
     </script>
 </head>
 
 <body onload="f()">
-    <h1>Your Quiz is going on...</h1>
-    <div class="progress-container">
-        <ul>
-            <li>
+    <h1 style="color: white">Your Quiz is going on...</h1>
+    <!-- <h3 id="timer"></h3> -->
+    <div id="extra-div">
+        <img src="pencil.svg" width="30px" height="30px" id="pencil">
+        <div class="progress-container">
+            <ul>
+                <li>
+                    <div class="one"></div>
+                </li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="progress-bar">
                 <div class="one"></div>
-            </li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        <div class="progress-bar">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-            <div class="four"></div>
-            <div class="five"></div>
-            <div class="six"></div>
-            <div class="seven"></div>
-            <div class="eight"></div>
-            <div class="nine"></div>
+                <div class="two"></div>
+                <div class="three"></div>
+                <div class="four"></div>
+                <div class="five"></div>
+                <div class="six"></div>
+                <div class="seven"></div>
+                <div class="eight"></div>
+                <div class="nine"></div>
+            </div>
         </div>
-    </div>
-    <h3 id="timer"></h3>
-    <div id="que">
-        <h3 id="question"></h3>
-    </div>
-    <div id="options">
-        <div class="opt" onclick="tick(1)">
-            <input type="radio" id="a" name="ans" value="a">
-            <label for="a"></label><br>
+        <div id="circular-progress" data-inner-circle="white" data-percentage="100" data-bg-color="violet"
+            data-progress-color="rebeccapurple">
+            <div class="inner-circle"></div>
+            <p class="percentage"></p>
         </div>
-        <div class="opt" onclick="tick(2)">
-            <input type="radio" id="b" name="ans" value="b">
-            <label for="b"></label><br>
+        <div id="que">
+            <h3 id="question"></h3>
         </div>
-        <div class="opt" onclick="tick(3)">
-            <input type="radio" id="c" name="ans" value="c">
-            <label for="c"></label><br>
-        </div>
-        <div class="opt" onclick="tick(4)">
-            <input type="radio" id="d" name="ans" value="d">
-            <label for="d"></label>
+        <div id="options">
+            <div class="opt" onclick="tick(1)">
+                <input type="radio" id="a" name="ans" value="a">
+                <label for="a"></label><br>
+            </div>
+            <div class="opt" onclick="tick(2)">
+                <input type="radio" id="b" name="ans" value="b">
+                <label for="b"></label><br>
+            </div>
+            <div class="opt" onclick="tick(3)">
+                <input type="radio" id="c" name="ans" value="c">
+                <label for="c"></label><br>
+            </div>
+            <div class="opt" onclick="tick(4)">
+                <input type="radio" id="d" name="ans" value="d">
+                <label for="d"></label>
+            </div>
         </div>
     </div>
     <button class="btn" onclick="goNext()">Next</button>
     <script>
+        console.log(correctAnswers);
+        if (window.performance) {
+            console.info("window.performance works fine on this browser");
+        }
+        console.info(performance.navigation.type);
+        if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+            alert("You just reloaded the page, your score is 0 now!");
+            let correctCount = 0;
+            console.log(correctAnswers);
+            for (let item of correctAnswers) {
+                correctCount += (item == true);
+                // console.log(correctCount);
+            }
+            console.log(correctCount)
+            localStorage.correctAnswers = correctCount;
+            console.log(localStorage.correctAnswers);
+            window.location.href = "result.html";
+        }
+
         // progress bar container
         let bar = document.querySelector(".progress-container").querySelectorAll("li");
-        console.log(bar);
+        // console.log(bar);
 
         // option labels
         let options = document.getElementById("options").querySelectorAll("label");
 
         // radio inputs
         let ans = document.getElementsByName("ans");
-        console.log(ans);
+        // console.log(ans);
 
         // progress bar
         let progressbar = document.querySelector(".progress-container .progress-bar").querySelectorAll("div");
-        console.log(progressbar);
+        // console.log(progressbar);
 
         // options div
         let ticked = document.getElementById("options").querySelectorAll("div");
 
+        // pencil svg
+        let pencil = document.getElementById("pencil");
+
+        let timing;
+        let timer;
+        let flag = 0;
+        let selected = 0;
+        let check = false;
+
         function f() {
-            let timer = 30;
-            setInterval(() => {
-                if(timer > 0) {
-                    timer--;
-                    document.getElementById("timer").innerText = `${timer} second left...`;
+            const progressBar = document.getElementById("circular-progress");
+            // console.log("progress bar = ", progressBar);
+            let progressValue = progressBar.querySelector(".percentage");
+            // console.log("progress Value = ", progressValue);
+            let innerCircle = progressBar.querySelector(".inner-circle");
+            // console.log("inner circle = ", innerCircle);
+            let startValue = 11;
+            let endValue = 0;
+            let progressConstant = 360 / (Math.abs(startValue - endValue) - 1);
+            let speed = 1000;
+            let progressColor = progressBar.getAttribute("data-progress-color");
+
+            timing = setInterval(() => {
+                if (startValue !== endValue) {
+                    startValue--;
+                    progressValue.textContent = startValue;
+                    progressValue.style.color = progressColor;
+                    progressBar.style.background = `conic-gradient(${progressColor} ${Math.abs(startValue - endValue) * progressConstant}deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
                 }
-            }, 1000);
-            localStorage.removeItem("correctCount");
+                else {
+                    flag = 1;
+                    selected = null;
+                    goNext();
+                }
+            }, speed);
+
+            localStorage.removeItem("correctAnswers");
             document.getElementById("question").innerHTML = que[count].question;
             for (let i = 0; i < options.length; i++) {
                 options[i].innerHTML = que[count].options[i];
@@ -111,18 +166,18 @@
 
 
         function goNext() {
-            let flag = 0;
-            let selected = 0;
-            let check = false;
+            check = false;
+            selected = null;
+            flag = 1;
             if (count < 10) {
                 for (let i = 0; i < ans.length; i++) {
                     if (ans[i].checked) {
                         selectedAnswers.push(ans[i].value);
                         check = ans[i].value === que[count].correct_answer;
                         correctAnswers.push(check);
-                        console.log(que[count]);
-                        console.log("correct = ", que[count].correct_answer);
-                        console.log("your answer = ", ans[i].value);
+                        // console.log(que[count]);
+                        // console.log("correct = ", que[count].correct_answer);
+                        // console.log("your answer = ", ans[i].value);
                         flag = 1;
                         selected = i;
                         break;
@@ -132,23 +187,36 @@
                     alert("please select one option!");
                 }
                 else {
-                    ans[selected].checked = false;
+                    if (selected !== null)
+                        ans[selected].checked = false;
+                    else {
+                        correctAnswers.push(check);
+                        selectedAnswers.push(null);
+                    }
                     if (check) {
-                        progressbar[count].style.background = "#34eb4c";
-                        if (count < 9)
+                        if (count < 9) {
                             bar[count].style.background = "#34eb4c";
+                            progressbar[count].style.background = "#34eb4c";
+                        }
                     }
                     else {
                         bar[count].style.background = "#eb3434";
                         if (count < 9)
                             progressbar[count].style.background = "#eb3434";
                     }
-                    if (count < 9)
+                    if (count < 9) {
+                        // console.log(pencil);
                         progressbar[count].style.width += "11%";
+                        // console.log(pencil.style.marginLeft);
+                        pencil.style.marginLeft = `${9 * (count + 1)}%`;
+                        // console.log(`${Number(10 * count)}%`);
+                        // console.log(pencil.style.marginLeft);
+                    }
                     count++;
-                    console.log(selectedAnswers);
-                    console.log(correctAnswers);
+                    // console.log(selectedAnswers);
+                    // console.log(correctAnswers);
                     if (count < 10) {
+                        clearInterval(timing);
                         f();
                         for (let i = 0; i < ticked.length; i++) {
                             ticked[i].style.background = "white";
@@ -159,7 +227,7 @@
                         let correctCount = 0;
                         for (let item of correctAnswers) {
                             correctCount += (item == true);
-                            console.log(correctCount);
+                            // console.log(correctCount);
                         }
                         localStorage.correctAnswers = correctCount;
                         window.location.href = "result.html";
@@ -167,7 +235,6 @@
                 }
             }
         }
-
 
         function tick(num) {
             for (let i = 0; i < ticked.length; i++) {

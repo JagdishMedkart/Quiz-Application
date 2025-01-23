@@ -1,4 +1,10 @@
-h1{
+:root {
+    --font-size: 1rem;
+    --progress-bar-width: 80px;
+    --progress-bar-height: 80px;
+}
+
+h1 {
     text-align: center;
     margin-bottom: 2%;
 }
@@ -21,7 +27,7 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container .progress-bar .two {
@@ -32,7 +38,7 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container .progress-bar .three {
@@ -43,7 +49,7 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container .progress-bar .four {
@@ -54,7 +60,7 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container .progress-bar .five {
@@ -65,7 +71,7 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container .progress-bar .six {
@@ -76,7 +82,7 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container .progress-bar .seven {
@@ -87,7 +93,7 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container .progress-bar .eight {
@@ -98,7 +104,7 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container .progress-bar .nine {
@@ -109,11 +115,17 @@ h1{
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     border: none;
-    transition: width 1s ease-in-out;
+    transition: width 0.5s ease-in-out;
 }
 
 body {
     margin: 0%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(bg3.jpg);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 h4 {
@@ -128,14 +140,23 @@ h4 {
 
 .progress-container {
     z-index: -1;
-    margin: 10px;
-    width: 80%;
+    /* margin: 10px; */
+    width: 81%;
     height: 9px;
     background: #444;
     position: relative;
     left: 10%;
     right: 10%;
     box-shadow: inset 0 0 5px #666;
+    margin-bottom: 5%;
+}
+
+#pencil {
+    position: relative;
+    margin-bottom: 0;
+    left: 10%;
+    /* width: 10%; */
+    transition: width 0.5s ease-in-out;
 }
 
 .progress-container ul li {
@@ -187,59 +208,16 @@ h4 {
     margin-left: 99%;
 }
 
-
-.progress-container1 ul li:before {
-    z-index: -99;
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    content: '';
-    height: 20px;
-    width: 20px;
-    background: #444;
-    border-radius: 50%;
-}
-
-.progress-container1 .progress-bar {
-    height: 2px;
-    width: 100%;
-    background: #09A6B2;
-    -webkit-transition: width 1s ease-in-out;
-    -moz-transition: width 1s ease-in-out;
-    -o-transition: width 1s ease-in-out;
-    transition: width 1s ease-in-out;
-}
-
-.button1 {
-    margin: 20px auto;
-    padding: 10px;
-    width: 150px;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #FFF;
-    background: #14BFCC;
-    text-align: center;
-    border: 1px solid #09A6B2;
-    cursor: pointer;
-}
-
-#reset1 {
-    background: #FF4C4C;
-    border-color: #9E2626;
-}
-
-
 #que {
     width: 20%;
     height: 20% auto;
     margin: auto;
-    margin-top: 3%;
+    margin-top: 2%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 2%;
     padding: 2% 5%;
     text-align: center;
+    background-color: white;
 }
 
 .question {
@@ -253,12 +231,13 @@ h4 {
     width: 20%;
     height: 20%;
     margin: auto;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     padding: 1% 5%;
     padding-left: 2%;
     padding-right: 8%;
+    background-color: white;
 }
 
 .opt:hover {
@@ -278,6 +257,7 @@ h4 {
     border: rgba(3, 102, 214, 0.3);
     margin-top: 2%;
     border-radius: 1%;
+    margin-bottom: 2%;
 }
 
 .btn:hover {
@@ -289,15 +269,16 @@ h4 {
 
 #result {
     color: white;
-    width: 20%;
+    width: 30%;
     padding: 2% 5%;
+    padding-bottom: 5%;
     margin: 0 auto;
     text-align: center;
     margin-top: 5%;
     border-radius: 1%;
-    background: rgb(2, 0, 36);
+    /* background: rgb(2, 0, 36);
     background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(18, 9, 121, 1) 53%, rgba(62, 16, 62, 1) 100%);
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; */
 }
 
 .result-bar {
@@ -305,13 +286,54 @@ h4 {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: 
-    radial-gradient(closest-side, white 79%, transparent 80% 100%),
-    conic-gradient(green 75%, white);   
+    background:
+        radial-gradient(closest-side, white 79%, transparent 80% 100%),
+        conic-gradient(green 75%, white);
 }
 
 #timer {
     text-align: center;
     margin-top: 2%;
     margin-bottom: 0;
+}
+
+.percentage {
+    position: relative;
+    color: black;
+    font-size: var(--font-size);
+}
+
+#circular-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: auto;
+    width: var(--progress-bar-width);
+    height: var(--progress-bar-height);
+}
+
+#extra-div #circular-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: auto;
+    width: var(--progress-bar-width);
+    height: var(--progress-bar-height);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+
+.inner-circle {
+    position: absolute;
+    border-radius: 50%;
+    width: calc(var(--progress-bar-width) - 30px);
+    height: calc(var(--progress-bar-height) - 30px);
+    background-color: white;
+}
+
+#extra-div {
+    z-index: -10;
 }

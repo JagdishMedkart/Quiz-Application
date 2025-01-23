@@ -18,8 +18,15 @@
                 <p class="percentage"></p>
             </div>
     </div>
+    <div style="display:flex; justify-content: center">
+        <button onClick="window.location.href='index.html'" class="btn">Go Home</button>
+    </div>
 </body>
 <script>
+    window.addEventListener('hashchange', () => {
+        alert("you are going back now...");
+        window.location.href = "index.html";
+    });
     function f() {
         let correctCount = document.getElementById("correct")
         if (localStorage.getItem("correctAnswers")) {

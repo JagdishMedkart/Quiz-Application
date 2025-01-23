@@ -25,9 +25,7 @@
         <img src="pencil.svg" width="30px" height="30px" id="pencil">
         <div class="progress-container">
             <ul>
-                <li>
-                    <div class="one"></div>
-                </li>
+                <li></li>
                 <li></li>
                 <li></li>
                 <li></li>
@@ -79,22 +77,13 @@
     </div>
     <button class="btn" onclick="goNext()">Next</button>
     <script>
-        console.log(correctAnswers);
-        if (window.performance) {
-            console.info("window.performance works fine on this browser");
-        }
-        console.info(performance.navigation.type);
+        // console.log(correctAnswers);
+        // if (window.performance) {
+        //     console.info("window.performance works fine on this browser");
+        // }
+        // console.info(performance.navigation.type);
         if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
             alert("You just reloaded the page, your score is 0 now!");
-            let correctCount = 0;
-            console.log(correctAnswers);
-            for (let item of correctAnswers) {
-                correctCount += (item == true);
-                // console.log(correctCount);
-            }
-            console.log(correctCount)
-            localStorage.correctAnswers = correctCount;
-            console.log(localStorage.correctAnswers);
             window.location.href = "result.html";
         }
 
@@ -114,7 +103,7 @@
         // console.log(progressbar);
 
         // options div
-        let ticked = document.getElementById("options").querySelectorAll("div");
+        let ticked = document.getElementById("options").querySelectorAll(".opt");
 
         // pencil svg
         let pencil = document.getElementById("pencil");
@@ -132,17 +121,20 @@
             // console.log("progress Value = ", progressValue);
             let innerCircle = progressBar.querySelector(".inner-circle");
             // console.log("inner circle = ", innerCircle);
-            let startValue = 11;
+            let startValue = 10;
             let endValue = 0;
-            let progressConstant = 360 / (Math.abs(startValue - endValue) - 1);
+            let progressConstant = 360 / (Math.abs(startValue - endValue));
             let speed = 1000;
             let progressColor = progressBar.getAttribute("data-progress-color");
+
+            progressValue.textContent = startValue;
+            progressValue.style.color = progressColor;
+            progressBar.style.background = `conic-gradient(${progressColor} ${Math.abs(startValue - endValue) * progressConstant}deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
 
             timing = setInterval(() => {
                 if (startValue !== endValue) {
                     startValue--;
                     progressValue.textContent = startValue;
-                    progressValue.style.color = progressColor;
                     progressBar.style.background = `conic-gradient(${progressColor} ${Math.abs(startValue - endValue) * progressConstant}deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
                 }
                 else {
@@ -155,7 +147,7 @@
             localStorage.removeItem("correctAnswers");
             document.getElementById("question").innerHTML = que[count].question;
             for (let i = 0; i < options.length; i++) {
-                options[i].innerHTML = que[count].options[i];
+                options[i].innerText = que[count].options[i];
             }
             if (count < 10) {
                 bar[count].style.background = "white";

@@ -57,7 +57,7 @@ function startingQuiz() {
     // pencil svg
     pencil = document.getElementById("pencil");
 
-    f();
+    showNewQuestion();
 }
 
 function showNewQuestion() {

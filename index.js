@@ -67,8 +67,14 @@ function showNewQuestion() {
     // console.log("progress Value = ", progressValue);
     let innerCircle = progressBar.querySelector(".inner-circle");
     // console.log("inner circle = ", innerCircle);
-    if(localStorage.startValue) {
-        startValue = localStorage.startValue;
+    if (localStorage.startValue) {
+        if (localStorage.startValue == 5 || localStorage.startValue == 10 || localStorage.startValue == 15 || localStorage.startValue == 30) {
+            startValue = localStorage.startValue;
+        }
+        else {
+            localStorage.startValue = 10;
+            startValue = localStorage.startValue;
+        }
     }
     else {
         startValue = 10;
@@ -245,7 +251,7 @@ function checkAnswers() {
             div = document.createElement("div");
             div.className = "que";
             let text = document.createElement("h3");
-            text.innerHTML = `${arr[i] + 1}. ` + que[arr[i]].question;
+            text.innerHTML = `${arr[i] + 1}. ` + que[arr[i]]?.question;
             div.appendChild(text);
 
             let correct_ans = document.createElement("div");
@@ -256,7 +262,7 @@ function checkAnswers() {
             let ind = -1;
 
             for (let j = 0; j < chars.length; j++) {
-                if (que[arr[i]].correct_answer === chars[j]) {
+                if (que[arr[i]]?.correct_answer === chars[j]) {
                     ind = j;
                     break;
                 }
@@ -264,7 +270,7 @@ function checkAnswers() {
 
             actual_ans.style.textAlign = "center";
 
-            actual_ans.innerHTML = que[arr[i]].options[ind];
+            actual_ans.innerHTML = que[arr[i]]?.options[ind];
             correct_ans.appendChild(actual_ans);
             // answers.appendChild(div);
             // answers.appendChild(correct_ans);
@@ -274,7 +280,7 @@ function checkAnswers() {
     }
     else {
         // console.log(mainDiv);
-        while(mainDiv.firstChild) {
+        while (mainDiv.firstChild) {
             mainDiv.removeChild(mainDiv.firstChild);
         }
     }
@@ -282,12 +288,19 @@ function checkAnswers() {
 
 function wrongAnswers() {
     // console.log("correct answers = ", localStorage.correct);
-    let correct = localStorage.correct.split(",");
-    // console.log("my array = ", correct);
-    for (let i = 0; i < correct.length; i++) {
-        // console.log(correct[i]);
-        // console.log(correct[i] === "true");
-        if (correct[i] !== "true") {
+    if (localStorage.correct) {
+        let correct = localStorage.correct.split(",");
+        // console.log("my array = ", correct);
+        for (let i = 0; i < correct.length; i++) {
+            // console.log(correct[i]);
+            // console.log(correct[i] === "true");
+            if (correct[i] !== "true") {
+                arr.push(i);
+            }
+        }
+    }
+    else {
+        for (let i = 0; i < que.length; i++) {
             arr.push(i);
         }
     }
@@ -299,7 +312,6 @@ function wrongAnswers() {
         wrong.onclick = checkAnswers;
         answers.appendChild(wrong);
         wrong.innerText = "See Corrected Answers";
-        // console.log(answers);
     }
     else {
         let congrats = document.getElementById("congrats");

@@ -97,7 +97,7 @@ function showNewQuestion() {
         else {
             flag = 1;
             selected = null;
-            goNext();
+            goNext(2);
         }
     }, speed);
 
@@ -116,10 +116,11 @@ function showNewQuestion() {
     }
 }
 
-function goNext() {
+function goNext(num) {
     check = false;
     selected = null;
-    flag = 1;
+    flag = 0;
+    if (num == 2) flag = 1;
     if (count < 10) {
         for (let i = 0; i < ans.length; i++) {
             if (ans[i].checked) {

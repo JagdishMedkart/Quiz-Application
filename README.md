@@ -5,15 +5,16 @@ Quiz application using normal HTML, CSS, JS.
 - Quiz Masters is a quiz platform created for conducting a maths quiz.
 - It is created using `HTML`, `CSS` and `Javascript`.
 
-## Project Installation
-    create a clone of this project on your system using this command:
-    ```
-    git clone https://github.com/JagdishMedkart/Quiz-Application.git
-    ```
+### Project Installation
+create a clone of this project on your system using this command:
 
-    - Now, open the folder, You can see a file called `index.html`, Just click on that file and the project will open in your default browser.
-    - If you are not able to open it on browser directly by click, then copy the file path and paste it into browser URL.
-    - Now, you can see the starting page.
+```
+git clone https://github.com/JagdishMedkart/Quiz-Application.git
+```
+
+- Now, open the folder, You can see a file called `index.html`, Just click on that file and the project will open in your default browser.
+- If you are not able to open it on browser directly by click, then copy the file path and paste it into browser URL.
+- Now, you can see the starting page.
 
 ### Project Flow
 
@@ -39,4 +40,4 @@ Quiz application using normal HTML, CSS, JS.
 1. You can see your number of correct answers and Percentage Score in a circular progress bar.
 2. If you score 100%, then congratulations!!!
 3. Otherwise, you can see a button `Check Corrected Answers...`, It will show you all the questions and their corrected answers which you were not able to answer.
-4. You can click on `Go Home`, and you will be redirected to `index.html`. :)
+4. You can click on `Go Home`, and you will be redirected to `index.html`.

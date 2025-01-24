@@ -13,9 +13,20 @@ let timer;
 let flag = 0;
 let selected = 0;
 let check = false;
+let clickCount = 0;
+let arr = [];
+let div;
+let mainDiv;
+let startValue = 10;
+let endValue = 0;
 
 
-function starting() {
+function setTimer(value) {
+    localStorage.startValue = parseInt(value);
+    window.location.href = "start2.html";
+}
+
+function startingQuiz() {
     count = 0;
     selectedAnswers = [];
     correctAnswers = [];
@@ -49,15 +60,20 @@ function starting() {
     f();
 }
 
-function f() {
+function showNewQuestion() {
     const progressBar = document.getElementById("circular-progress");
     // console.log("progress bar = ", progressBar);
     let progressValue = progressBar.querySelector(".percentage");
     // console.log("progress Value = ", progressValue);
     let innerCircle = progressBar.querySelector(".inner-circle");
     // console.log("inner circle = ", innerCircle);
-    let startValue = 10;
-    let endValue = 0;
+    if(localStorage.startValue) {
+        startValue = localStorage.startValue;
+    }
+    else {
+        startValue = 10;
+    }
+    endValue = 0;
     let progressConstant = 360 / (Math.abs(startValue - endValue));
     let speed = 1000;
     let progressColor = progressBar.getAttribute("data-progress-color");
@@ -90,7 +106,6 @@ function f() {
         bar[count].style.top = "-5px";
     }
 }
-
 
 function goNext() {
     check = false;
@@ -144,7 +159,7 @@ function goNext() {
             // console.log(correctAnswers);
             if (count < 10) {
                 clearInterval(timing);
-                f();
+                showNewQuestion();
                 for (let i = 0; i < ticked.length; i++) {
                     ticked[i].style.background = "white";
                     ticked[i].style.color = "black";
@@ -175,8 +190,7 @@ function tick(num) {
     ans[num - 1].checked = true;
 }
 
-
-function f1() {
+function populateResult() {
     let correctCount = document.getElementById("correct");
     if (localStorage.getItem("correctAnswers")) {
         correctCount.innerHTML += localStorage.correctAnswers;
@@ -184,11 +198,11 @@ function f1() {
     else correctCount.innerHTML += 0;
 
     const progressBar = document.getElementById("circular-progress");
-    console.log("progress bar = ", progressBar);
+    // console.log("progress bar = ", progressBar);
     let progressValue = progressBar.querySelector(".percentage");
-    console.log("progress Value = ", progressValue);
+    // console.log("progress Value = ", progressValue);
     let innerCircle = progressBar.querySelector(".inner-circle");
-    console.log("inner circle = ", innerCircle);
+    // console.log("inner circle = ", innerCircle);
     let startValue = 0;
     let endValue = 0;
 
@@ -197,7 +211,7 @@ function f1() {
     if (endValue == undefined) {
         endValue = 0;
     }
-    console.log(endValue);
+    // console.log(endValue);
 
     let speed = 50;
     let progressColor = progressBar.getAttribute("data-progress-color");
@@ -223,90 +237,77 @@ function f1() {
     wrongAnswers();
 }
 
-let arr = [];
-
 function checkAnswers() {
-    for (let i = 0; i < arr.length; i++) {
-        let div = document.createElement("div");
-        div.className = "que";
-        let text = document.createElement("h3");
-        text.innerHTML = `${arr[i] + 1}. ` + que[arr[i]].question;
-        div.appendChild(text);
+    clickCount++;
+    if (clickCount % 2) {
+        mainDiv = document.getElementById("correctAns");
+        for (let i = 0; i < arr.length; i++) {
+            div = document.createElement("div");
+            div.className = "que";
+            let text = document.createElement("h3");
+            text.innerHTML = `${arr[i] + 1}. ` + que[arr[i]].question;
+            div.appendChild(text);
 
-        let correct_ans = document.createElement("div");
-        correct_ans.className = "opt2";
-        let actual_ans = document.createElement("h3");
+            let correct_ans = document.createElement("div");
+            correct_ans.className = "opt2";
+            let actual_ans = document.createElement("h3");
 
-        let chars = ["a", "b", "c", "d"];
-        let ind = -1;
+            let chars = ["a", "b", "c", "d"];
+            let ind = -1;
 
-        for (let j = 0; j < chars.length; j++) {
-            if (que[arr[i]].correct_answer === chars[j]) {
-                ind = j;
-                break;
+            for (let j = 0; j < chars.length; j++) {
+                if (que[arr[i]].correct_answer === chars[j]) {
+                    ind = j;
+                    break;
+                }
             }
+
+            actual_ans.style.textAlign = "center";
+
+            actual_ans.innerHTML = que[arr[i]].options[ind];
+            correct_ans.appendChild(actual_ans);
+            // answers.appendChild(div);
+            // answers.appendChild(correct_ans);
+            mainDiv.appendChild(div);
+            mainDiv.appendChild(correct_ans);
         }
-
-        actual_ans.style.textAlign = "center";
-
-        actual_ans.innerHTML = que[arr[i]].options[ind];
-        correct_ans.appendChild(actual_ans);
-        answers.appendChild(div);
-        answers.appendChild(correct_ans);
+    }
+    else {
+        // console.log(mainDiv);
+        while(mainDiv.firstChild) {
+            mainDiv.removeChild(mainDiv.firstChild);
+        }
     }
 }
 
 function wrongAnswers() {
-    console.log("correct answers = ", localStorage.correct);
+    // console.log("correct answers = ", localStorage.correct);
     let correct = localStorage.correct.split(",");
-    console.log("my array = ", correct);
+    // console.log("my array = ", correct);
     for (let i = 0; i < correct.length; i++) {
-        console.log(correct[i]);
-        console.log(correct[i] === "true");
+        // console.log(correct[i]);
+        // console.log(correct[i] === "true");
         if (correct[i] !== "true") {
             arr.push(i);
         }
     }
-    console.log(arr);
+    // console.log(arr);
     if (arr.length > 0) {
         let answers = document.getElementById("answers");
-        // let wrong = document.createElement("h2");
-        // wrong.innerHTML = "See Corrected Answers of Your Mistakes...";
-        // wrong.style.color = "white";
-        // wrong.style.textAlign = "center";
         let wrong = document.createElement("button");
         wrong.className = "btn";
         wrong.onclick = checkAnswers;
         answers.appendChild(wrong);
-        wrong.innerText = "See Correct Answers..."
-        console.log(answers);
-        // for (let i = 0; i < arr.length; i++) {
-        //     let div = document.createElement("div");
-        //     div.className = "que";
-        //     let text = document.createElement("h3");
-        //     text.innerHTML = `${arr[i] + 1}. ` + que[arr[i]].question;
-        //     div.appendChild(text);
-
-        //     let correct_ans = document.createElement("div");
-        //     correct_ans.className = "opt2";
-        //     let actual_ans = document.createElement("h3");
-
-        //     let chars = ["a", "b", "c", "d"];
-        //     let ind = -1;
-
-        //     for (let j = 0; j < chars.length; j++) {
-        //         if (que[arr[i]].correct_answer === chars[j]) {
-        //             ind = j;
-        //             break;
-        //         }
-        //     }
-
-        //     actual_ans.style.textAlign = "center";
-
-        //     actual_ans.innerHTML = que[arr[i]].options[ind];
-        //     correct_ans.appendChild(actual_ans);
-        //     answers.appendChild(div);
-        //     answers.appendChild(correct_ans);
-        // }
+        wrong.innerText = "See Corrected Answers";
+        // console.log(answers);
     }
+    else {
+        let congrats = document.getElementById("congrats");
+        congrats.innerText = "Amazing Performance!";
+    }
+}
+
+function doCleaning() {
+    localStorage.clear();
+    window.location.href = "index.html";
 }

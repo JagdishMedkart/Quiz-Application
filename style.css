@@ -120,7 +120,7 @@ h1 {
 
 body {
     margin: 0%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(bg3.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(images/bg3.jpg);
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -140,7 +140,6 @@ h4 {
 
 .progress-container {
     z-index: -1;
-    /* margin: 10px; */
     width: 81%;
     height: 9px;
     background: #444;
@@ -155,7 +154,6 @@ h4 {
     position: relative;
     margin-bottom: 0;
     left: 10%;
-    /* width: 10%; */
     transition: margin-left 0.5s ease-in-out;
 }
 
@@ -221,9 +219,6 @@ h4 {
 }
 
 .opt {
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: left; */
     width: 20%;
     height: 20%;
     margin: auto;
@@ -275,6 +270,7 @@ h4 {
     margin-top: 2%;
     border-radius: 1%;
     margin-bottom: 2%;
+    text-align: center;
 }
 
 .btn:hover {
@@ -293,9 +289,6 @@ h4 {
     text-align: center;
     margin-top: 5%;
     border-radius: 1%;
-    /* background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(18, 9, 121, 1) 53%, rgba(62, 16, 62, 1) 100%);
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; */
 }
 
 .result-bar {
@@ -353,4 +346,11 @@ h4 {
 
 #extra-div {
     z-index: -10;
+}
+
+#chooseTime {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

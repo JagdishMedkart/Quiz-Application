@@ -8,8 +8,9 @@
     <title>Quiz Result</title>
 </head>
 
-<body onload="f1()">
+<body onload="populateResult()">
     <h1 style="font-size: 5rem; color: white; margin: 0;" id="heading">Your Results</h1>
+    <h2 id="congrats" style="font-size: 3rem; color: white; margin-top: 2%; text-align: center;"></h2>
     <div id="result">
         <h2 id="correct" style="font-size: 2rem; text-align: center;">Correct Answers : </h3>
             <div id="circular-progress" data-inner-circle="white" data-percentage="100" data-bg-color="#e3eaa7"
@@ -19,9 +20,10 @@
             </div>
     </div>
     <div style="display:flex; justify-content: center">
-        <button onClick="window.location.href='index.html'" class="btn">Go Home</button>
+        <button onClick="doCleaning()" class="btn">Go Home</button>
     </div>
     <div id="answers"></div>
+    <div id="correctAns"></div>
     <script src="./questions.js"></script>
     <script src="./index.js"></script>
 </body>

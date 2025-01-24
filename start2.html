@@ -8,15 +8,8 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
-    <div id="chooseTime">
-        <h1 style="text-align: center; color: white; font-size: 3rem;">Choose Your Timer Limit For Each Question</h1>
-        <button class="btn" onclick="setTimer(5)">5s</button>
-        <button class="btn" onclick="setTimer(10)">10s</button>
-        <button class="btn" onclick="setTimer(15)">15s</button>
-        <button class="btn" onclick="setTimer(30)">30s</button>
-    </div>
-    <!-- <h1 style="color: white">Your Quiz is going on...</h1>
+<body onload="startingQuiz()">
+    <h1 style="color: white">Your Quiz is going on...</h1>
     <div id="extra-div">
         <img src="images/pencil.svg" width="30px" height="30px" id="pencil">
         <div class="progress-container">
@@ -71,7 +64,7 @@
             </div>
         </div>
     </div>
-    <button class="btn" onclick="goNext()">Next</button> -->
+    <button class="btn" onclick="goNext()">Next</button>
     <script src="./questions.js"></script>
     <script src="./index.js"></script>
 </body>

@@ -38,6 +38,17 @@ git clone https://github.com/JagdishMedkart/Quiz-Application.git
 
 ## result.html
 1. You can see your number of correct answers and Percentage Score in a circular progress bar.
-2. If you score 100%, then congratulations!!!
+2. If you scored 100%, then congratulations!!!
 3. Otherwise, you can see a button `Check Corrected Answers...`, It will show you all the questions and their corrected answers which you were not able to answer.
 4. You can click on `Go Home`, and you will be redirected to `index.html`.
+
+### Javascript Logic
+1. **`setTimer`**: sets the timer value to user selected time.
+2. **`startingQuiz`**: Initializes different elements and variables, Then it calls showNewQuestion().
+3. **`showNewQuestion()`**: Shows the questions and its options below. Also, starts the timer. It calls goNext().
+4. **`goNext()`**: Checks selected answer, matches with correct answer and moves next. If timer runs out then also it is triggered. It updates upper progress bar, too.
+5. **`tick()`**: It unticks the previously selected options.
+6. **`populateResult()`**: It shows full result view with circular progress bar animation. 
+7. **`checkAnswers()`**: It manages the view of final correct answers where user made mistake.
+8. **`wrongAnswers()`**: It checks if user had any wrong answers, if yes then it creates a button for checking correct answers.
+8. **`doCleaning()`**: It clears the localStorage and moves back to home page.

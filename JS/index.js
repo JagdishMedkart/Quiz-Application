@@ -23,7 +23,7 @@ let endValue = 0;
 
 function setTimer(value) {
     localStorage.startValue = parseInt(value);
-    window.location.href = "start2.html";
+    window.location.href = 'start2.html';
 }
 
 function startingQuiz() {

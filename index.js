@@ -111,6 +111,9 @@ function showNewQuestion() {
         bar[count].style.border = "1px solid #444";
         bar[count].style.top = "-5px";
     }
+    if(count === 9) {
+        document.querySelector("button").innerHTML = "SUBMIT";
+    }
 }
 
 function goNext() {
@@ -169,6 +172,9 @@ function goNext() {
                 for (let i = 0; i < ticked.length; i++) {
                     ticked[i].style.background = "white";
                     ticked[i].style.color = "black";
+                }
+                if(count === 9) {
+                    document.getElementsByClassName("btn").innerHTML = "SUBMIT";
                 }
             }
             else {
